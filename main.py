@@ -18,7 +18,7 @@ import csv
 # Configuration
 # ==========================================
 TOKEN = "8934842351:AAFMIHo16zGLcS_97RyQgr0VYzRKq4-oax8"  # <-- Replace with your bot token
-ADMIN_ID = 8814363793          # <-- Replace with your Admin ID
+ADMIN_ID = 7952385899          # <-- Replace with your Admin ID
 
 BASE_URL = f"https://api.telegram.org/bot{TOKEN}"
 DB_FILE = "database.json"
