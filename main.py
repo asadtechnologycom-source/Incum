@@ -116,15 +116,16 @@ def is_admin(chat_id):
     return int(chat_id) in admin_settings.get("admins", [])
 
 def check_force_sub(chat_id):
+    if is_admin(chat_id):
+        return True
     channel = admin_settings.get("must_join_channel", "")
     if not channel:
         return True
     res = api_call("getChatMember", {"chat_id": channel, "user_id": chat_id})
     if not res.get("ok"):
-        return False
+        return True
     status = res["result"].get("status")
     return status in ["member", "administrator", "creator"]
-
 def ask_force_sub(chat_id):
     channel = admin_settings.get("must_join_channel", "")
     kb = [
