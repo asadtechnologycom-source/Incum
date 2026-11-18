@@ -90,7 +90,7 @@ def load_db():
                 if "admins" not in admin_settings:
                     admin_settings["admins"] = []
                 if "must_join_channel" not in admin_settings:
-                    admin_settings["must_join_channel"] = ""
+                    admin_settings["must_join_channel"] = "@Online_Free_Income_26"
                 if "igGuide" not in admin_settings:
                     admin_settings["igGuide"] = {"type": "text", "text": "Instagram এর কাজ করার নিয়ম এখানে থাকবে।"}
                 if "fbGuide" not in admin_settings:
