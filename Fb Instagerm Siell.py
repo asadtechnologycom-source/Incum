@@ -701,13 +701,13 @@ def handle_message(msg):
         return
 
     elif state == "awaiting_fb_cookies":
-        if "c_user=" not in text and "sessionid=" not in text:
-            send_message(chat_id, f"{PEM['warn']} Invalid Cookies! Please copy full correct cookies from browser.", reply_markup=getCancelMenu())
-            return
-        if chat_id in user_current_task:
-            user_current_task[chat_id]["tempKey"] = text
-        send_message(chat_id, f"{PEM['ok']} UID and Cookies received. Click 'Account Done' to complete.", reply_markup=getDoneMenu())
-            if admin_settings.get('fb_2fa_enabled', False):
+    if "c_user=" not in text and "sessionid=" not in text:
+        send_message(chat_id, f"{PEM['warn']} Invalid Cookies! Please copy full correct cookies from browser.", reply_markup=getCancelMenu())
+        return
+    if chat_id in user_current_task:
+        user_current_task[chat_id]["tempKey"] = text
+    send_message(chat_id, f"{PEM['ok']} UID and Cookies received. Click 'Account Done' to complete.", reply_markup=getDoneMenu())
+    if admin_settings.get('fb_2fa_enabled', False):
         send_message(chat_id, f"{EM['key']} Send FB 2FA Secret Key")
         user_states[chat_id] = "awaiting_fb_2fa"
     else:
