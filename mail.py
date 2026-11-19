@@ -427,15 +427,13 @@ def handle_message(msg):
             send_message(chat_id, "❌ ভুল PIN!")
         return
     if text == "/admin":
-    	
         if is_admin(chat_id):
-             if chat_id not in admin_verified:
-                   user_states[chat_id] = "awaiting_admin_pin"
-                   send_message(chat_id, "🔐 Admin 2FA\n\nPIN দাও:")
-                   return
+            if chat_id not in admin_verified:
+                user_states[chat_id] = "awaiting_admin_pin"
+                send_message(chat_id, "🔐 Admin 2FA\nPIN দাও:")
+                return
             send_message(chat_id, f"{PEM['admin']} <b>Admin Panel</b>", reply_markup=getAdminMenu(chat_id))
         return
-
     if text == "Cancel":
         if chat_id in user_current_task:
             del user_current_task[chat_id]
