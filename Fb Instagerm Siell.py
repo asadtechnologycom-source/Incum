@@ -311,12 +311,11 @@ def getAdminMenu(chat_id):
          {"text": "Approve FB", "icon_custom_emoji_id": "6111726981760423576", "callback_data": "admin_approve_fb", "style": "success"}],
         [{"text": "Export IG", "icon_custom_emoji_id": "5352721946054268944", "callback_data": "admin_export_ig", "style": "primary"}, 
          {"text": "Export FB", "icon_custom_emoji_id": "5352721946054268944", "callback_data": "admin_export_fb", "style": "primary"}],
-         [{"text": "🔑 Set Today's Password", "icon_custom_emoji..."}],
+        [{"text": "🔑 Set Today's Password", "icon_custom_emoji_id": "5352721946054268944", "callback_data": "admin_set_today_pass", "style": "primary"}],
         [{"text": "Set Rates", "icon_custom_emoji_id": "5420155432272438703", "callback_data": "admin_set_rates", "style": "primary"}, 
          {"text": "Support URL", "icon_custom_emoji_id": "5337302974806922068", "callback_data": "admin_set_support", "style": "primary"}],
         [{"text": "Withdraw Methods", "icon_custom_emoji_id": "6111799373434197692", "callback_data": "admin_withdraw_methods", "style": "primary"}, 
          {"text": "New User Guide", "icon_custom_emoji_id": "5353027129250453493", "callback_data": "admin_set_guide", "style": "primary"}],
-        # NEW: Configurable guides for FB and IG
         [{"text": "Set IG Guide", "icon_custom_emoji_id": "6109432142079466939", "callback_data": "admin_set_ig_guide", "style": "primary"}, 
          {"text": "Set FB Guide", "icon_custom_emoji_id": "6109432142079466939", "callback_data": "admin_set_fb_guide", "style": "primary"}],
         [{"text": "Referral Settings", "icon_custom_emoji_id": "6109561463544747928", "callback_data": "admin_ref_settings", "style": "success"},
