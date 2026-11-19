@@ -351,7 +351,7 @@ def process_submission(chat_id, username, submission_text):
         submissions.append({
             "id": str(uuid.uuid4())[:8],
             "userId": chat_id,
-            "username": ।,
+            "username": "",
             "platform": task["platform"],
             "providedDetails": task["providedDetails"],
             "userSubmission": submission_text,
