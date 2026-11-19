@@ -856,7 +856,6 @@ def handle_callback(call):
     chat_id = call.get("message", {}).get("chat", {}).get("id")
     msg_id = call.get("message", {}).get("message_id")
     data = call.get("data", "")
-    
     if not chat_id:
         return
 
