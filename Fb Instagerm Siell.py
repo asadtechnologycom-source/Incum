@@ -297,32 +297,25 @@ def getDoneMenu():
         "resize_keyboard": True
     }
 
-def getCancelMenu():
-    return {
-        "keyboard": [[{"text": "Cancel", "icon_custom_emoji_id": "6311965254817423602", "style": "danger"}]],
-        "resize_keyboard": True
-    }
-
-def getAdminMenu(chat_id):
-    kb = [
-        [{"text": "Users List", "icon_custom_emoji_id": "5352861489541714456", "callback_data": "admin_users", "style": "primary"}, 
-         {"text": "Broadcast", "icon_custom_emoji_id": "5337302974806922068", "callback_data": "admin_broadcast", "style": "success"}],
-        [{"text": "Approve IG", "icon_custom_emoji_id": "6111726981760423576", "callback_data": "admin_approve_ig", "style": "success"}, 
-         {"text": "Approve FB", "icon_custom_emoji_id": "6111726981760423576", "callback_data": "admin_approve_fb", "style": "success"}],
-        [{"text": "Export IG", "icon_custom_emoji_id": "5352721946054268944", "callback_data": "admin_export_ig", "style": "primary"}, 
-         {"text": "Export FB", "icon_custom_emoji_id": "5352721946054268944", "callback_data": "admin_export_fb", "style": "primary"}],
-        [{"text": "🔑 Set Today's Password", "icon_custom_emoji_id": "5352721946054268944", "callback_data": "admin_set_today_pass", "style": "primary"}],
-        [{"text": "Set Rates", "icon_custom_emoji_id": "5420155432272438703", "callback_data": "admin_set_rates", "style": "primary"}, 
-         {"text": "Support URL", "icon_custom_emoji_id": "5337302974806922068", "callback_data": "admin_set_support", "style": "primary"}],
-        [{"text": "Withdraw Methods", "icon_custom_emoji_id": "6111799373434197692", "callback_data": "admin_withdraw_methods", "style": "primary"}, 
-         {"text": "New User Guide", "icon_custom_emoji_id": "5353027129250453493", "callback_data": "admin_set_guide", "style": "primary"}],
-        [{"text": "Set IG Guide", "icon_custom_emoji_id": "6109432142079466939", "callback_data": "admin_set_ig_guide", "style": "primary"}, 
-         {"text": "Set FB Guide", "icon_custom_emoji_id": "6109432142079466939", "callback_data": "admin_set_fb_guide", "style": "primary"}],
-        [{"text": "Referral Settings", "icon_custom_emoji_id": "6109561463544747928", "callback_data": "admin_ref_settings", "style": "success"},
-         {"text": "Force Sub", "icon_custom_emoji_id": "6260265754222924781", "callback_data": "admin_set_channel", "style": "primary"}],
-        [{"text": "Download DB", "icon_custom_emoji_id": "5352721946054268944", "callback_data": "admin_download_db", "style": "primary"},
-         {"text": "Upload DB", "icon_custom_emoji_id": "5352721946054268944", "callback_data": "admin_upload_db", "style": "primary"}]
-    ]
+    elif state == "awaiting_fb_cookies":
+        if "c_user=" not in text and "sessionid=" not in text:
+            send_message(chat_id, f"{PEM['warn']} Invalid Cookies! Please copy full correct cookies from browser.", reply_markup=getCancelMenu())
+            return
+        if chat_id in user_current_task:
+            user_current_task[chat_id]["tempKey"] = text
+        send_message(chat_id, f"{PEM['ok']} UID and Cookies received. Click 'Account Done' to complete.", reply_markup=getDoneMenu())
+        if admin_settings.get('fb_2fa_enabled', False):
+            send_message(chat_id, f"{EM['key']} Send FB 2FA Secret Key")
+            user_states[chat_id] = "awaiting_fb_2fa"
+        else:
+            user_states[chat_id] = "awaiting_fb_account_done"
+            return
+    elif state == "awaiting_fb_2fa":
+        if chat_id in user_current_task:
+            user_current_task[chat_id]["temp2FA"] = text
+            send_message(chat_id, f"{EM['ok']} 2FA Saved, Now Tap Account Done")
+            user_states[chat_id] = "awaiting_fb_account_done"
+        return
     if str(chat_id) == str(ADMIN_ID):
         kb.append([{"text": "Manage Admins", "icon_custom_emoji_id": "5353032893096567467", "callback_data": "owner_manage_admins", "style": "danger"}])
     return {"inline_keyboard": kb}
