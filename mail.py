@@ -871,7 +871,7 @@ if data == "get_code":
     my_subs = [s for s in submissions if str(s.get("userId")) == str(chat_id) and s.get("platform") == "FB"]
     if not my_subs:
         send_message(chat_id, "No FB account found!")
-            return
+        return
     kb = {"inline_keyboard": []}
     for s in my_subs[-10:]:
         kb["inline_keyboard"].append([{"text": f"Get Code - {s.get('id')}", "callback_data": f"get_code_{s.get('id')}"}])
