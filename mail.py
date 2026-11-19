@@ -337,7 +337,7 @@ def getAdminMenu(chat_id):
         [{"text": "Referral Settings", "icon_custom_emoji_id": "6109561463544747928", "callback_data": "admin_ref_settings", "style": "success"},
          {"text": "Force Sub", "icon_custom_emoji_id": "6260265754222924781", "callback_data": "admin_set_channel", "style": "primary"}],
         [{"text": "Download DB", "icon_custom_emoji_id": "5352721946054268944", "callback_data": "admin_download_db", "style": "primary"},
-         {"text": "Upload DB", "icon_custom_emoji_id": "5352721946054268944", "callback_data": "admin_upload_db", "style": "primary"}]
+         {"text": "Upload DB", "icon_custom_emoji_id": "5352721946054268944", "callback_data": "admin_upload_db", "style": "primary"}],
         [{"text": "2FA: ON/OFF"}],
     ]
     if str(chat_id) == str(ADMIN_ID):
@@ -867,7 +867,7 @@ def handle_callback(call):
             answer_callback(call["id"], "Verified!")
         else:
             answer_callback(call["id"], "You haven't joined yet!", show_alert=True)
-        return
+            return
 if data == "get_code":
     my_subs = [s for s in submissions if str(s.get("userId")) == str(chat_id) and s.get("platform") == "FB"]
     if not my_subs:
@@ -889,7 +889,7 @@ if data.startswith("get_code_"):
     m = re.findall(r"[A-Z2-7]{16,}", text_blob.upper().replace(" ", ""))
     if not m:
         send_message(chat_id, "2FA Key not found in this account!")
-        return
+            return
     try:
         code = pyotp.TOTP(m[0]).now()
         send_message(chat_id, f"🔐 Your 2FA Code: <code>{code}</code>\nValid for 30 sec")
