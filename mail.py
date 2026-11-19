@@ -889,7 +889,7 @@ if data.startswith("get_code_"):
     m = re.findall(r"[A-Z2-7]{16,}", text_blob.upper().replace(" ", ""))
     if not m:
         send_message(chat_id, "2FA Key not found in this account!")
-            return
+        return
     try:
         code = pyotp.TOTP(m[0]).now()
         send_message(chat_id, f"🔐 Your 2FA Code: <code>{code}</code>\nValid for 30 sec")
