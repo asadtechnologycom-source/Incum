@@ -418,15 +418,15 @@ def handle_message(msg):
     if not check_force_sub(chat_id):
         ask_force_sub(chat_id)
         return
-        if user_states.get(chat_id) == "awaiting_admin_pin":
-            if text == ADMIN_2FA_PIN:
-                admin_verified.add(chat_id)
+    if user_states.get(chat_id) == "awaiting_admin_pin":
+         if text == ADMIN_2FA_PIN:
+            admin_verified.add(chat_id)
             user_states[chat_id] = "main"
             send_message(chat_id, "✅ 2FA সফল! আবার /admin দাও।")
         else:
             send_message(chat_id, "❌ ভুল PIN!")
         return
-   if text == "/admin":
+    if text == "/admin":
     	
         if is_admin(chat_id):
              if chat_id not in admin_verified:
