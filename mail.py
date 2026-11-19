@@ -867,16 +867,16 @@ def handle_callback(call):
         else:
             answer_callback(call["id"], "You haven't joined yet!", show_alert=True)
             return
-if data == "get_code":
-    my_subs = [s for s in submissions if str(s.get("userId")) == str(chat_id) and s.get("platform") == "FB"]
-    if not my_subs:
-        send_message(chat_id, "No FB account found!")
-        return
-    kb = {"inline_keyboard": []}
-    for s in my_subs[-10:]:
-        kb["inline_keyboard"].append([{"text": f"Get Code - {s.get('id')}", "callback_data": f"get_code_{s.get('id')}"}])
-    send_message(chat_id, "Select account to get 2FA Code:", reply_markup=kb)
-    return
+        if data == "get_code":
+            my_subs = [s for s in submissions if str(s.get("userId")) == str(chat_id) and s.get("platform") == "FB"]
+            if not my_subs:
+                send_message(chat_id, "No FB account found!")
+                return
+            kb = {"inline_keyboard": []}
+            for s in my_subs[-10:]:
+                kb["inline_keyboard"].append([{"text": f"Get Code - {s.get('id')}", "callback_data": f"get_code_{s.get('id')}"}])
+            send_message(chat_id, "Select account to get 2FA Code:", reply_markup=kb)
+            return
 
 if data.startswith("get_code_"):
     sid = data.replace("get_code_", "")
