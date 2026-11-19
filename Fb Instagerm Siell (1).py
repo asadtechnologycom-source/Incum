@@ -17,8 +17,8 @@ import csv
 # ==========================================
 # Configuration
 # ==========================================
-TOKEN = "8934842351:AAFMIHo16zGLcS_97RyQgr0VYzRKq4-oax8"  # <-- Replace with your bot token
-ADMIN_ID = 8814363793          # <-- Replace with your Admin ID
+TOKEN = "8845771230:AAF--sVPymDJkiCqPPwEqy-zJ5LeiqbjYdo"  # <-- Replace with your bot token
+ADMIN_ID = 8551898810          # <-- Replace with your Admin ID
 
 BASE_URL = f"https://api.telegram.org/bot{TOKEN}"
 DB_FILE = "database.json"
@@ -67,7 +67,7 @@ admin_settings = {
     "referralTasksRequired": 5,
     "referralBonusAmount": 10.0
 }
-bot_username = "EasyIncomeX_bot"
+bot_username = "Rocke_incum_bot"
 
 user_states = {}
 user_current_task = {}
