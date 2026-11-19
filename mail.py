@@ -881,9 +881,9 @@ def handle_callback(call):
 if data.startswith("get_code_"):
     sid = data.replace("get_code_", "")
     sub = next((s for s in submissions if str(s.get("id")) == str(sid)), None)
-    if not sub:
-        send_message(chat_id, "Account not found!")
-        return
+            if not sub:
+                send_message(chat_id, "Account not found!")
+                return
     text_blob = str(sub.get("userSubmission", "")) + "\n" + str(sub.get("providedDetails", ""))
     m = re.findall(r"[A-Z2-7]{16,}", text_blob.upper().replace(" ", ""))
     if not m:
