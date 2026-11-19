@@ -59,7 +59,7 @@ users = {}
 submissions = []
 rates = {"ig_2fa": 3.00, "fb_cookies": 4.50}
 admin_settings = {
-    "supportUrl": "https://t.me/EasyIncomeX_Support",
+    "supportUrl": "https://t.me/ASAD_VAI_RT",
     "withdrawMethods": [{"name": "bKash", "minAmount": 50}, {"name": "Nagad", "minAmount": 50}],
     "newUserGuide": {"type": "text", "text": "কীভাবে কাজ করবেন তা জানতে আমাদের গাইড পড়ুন।"},
     "igGuide": {"type": "text", "text": "Instagram এর কাজ করার নিয়ম এখানে থাকবে।"},
@@ -68,7 +68,7 @@ admin_settings = {
     "referralBonusAmount": 10.0,
 "fb_2fa_enabled": False
 }
-bot_username = "EasyIncomeX_bot"
+bot_username = "ROCKET INCUM"
 
 user_states = {}
 user_current_task = {}
